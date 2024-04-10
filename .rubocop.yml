@@ -13,3 +13,6 @@ Style/Documentation:
 Lint/MissingSuper:
   Exclude:
     - "app/components/**/*"
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
