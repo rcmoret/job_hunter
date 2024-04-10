@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserIdToBusinessesAsFk < ActiveRecord::Migration[7.0]
   def change
     remove_index :businesses, :name

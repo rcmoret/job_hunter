@@ -16,3 +16,7 @@ Lint/MissingSuper:
 
 Style/HashSyntax:
   EnforcedShorthandSyntax: never
+
+Layout/LineLength:
+  Exclude:
+    - "config/initializers/devise.rb"
