@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :businesses
+  has_many :job_listings, through: :businesses
 end
