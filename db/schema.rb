@@ -27,6 +27,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_10_163224) do
     t.index ["description"], name: "index_job_listing_event_types_on_description"
   end
 
+  create_table "job_listing_events", force: :cascade do |t|
+    t.datetime "event_time", null: false
+    t.integer "job_listing_event_type_id", null: false
+    t.integer "job_listing_id", null: false
+    t.string "info", limit: 5000
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_listing_event_type_id"], name: "index_job_listing_events_on_job_listing_event_type_id"
+    t.index ["job_listing_id"], name: "index_job_listing_events_on_job_listing_id"
+  end
+
   create_table "job_listings", force: :cascade do |t|
     t.integer "business_id", null: false
     t.string "description", limit: 200, null: false
@@ -51,5 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_10_163224) do
   end
 
   add_foreign_key "businesses", "users"
+  add_foreign_key "job_listing_events", "job_listing_event_types"
+  add_foreign_key "job_listing_events", "job_listings"
   add_foreign_key "job_listings", "businesses"
 end
