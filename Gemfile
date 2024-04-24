@@ -8,6 +8,7 @@ ruby "3.2.0"
 gem "rails", "~> 7.0.8", ">= 7.0.8.1"
 
 gem "bootsnap", require: false
+gem "devise", "~> 4.9"
 gem "importmap-rails"
 gem "jbuilder"
 gem "puma", "~> 5.0"
@@ -39,7 +40,11 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
+  gem "factory_bot", "~> 6.4"
+  gem "faker", "~> 3.3"
+  gem "rspec", "~> 3.13"
   gem "selenium-webdriver"
+  gem "shoulda-matchers", "~> 6.2"
 end
 
-gem "devise", "~> 4.9"
+gem "rspec-rails", "~> 6.1"
