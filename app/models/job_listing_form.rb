@@ -11,16 +11,29 @@ class JobListingForm
                 :business_id,
                 :current_user
 
-  validate :business_found!
+  validate :valid_business!
+
+  delegate :to_param, to: :job_listing
 
   def save
+    return false unless valid?
+
     job_listing.save!
   end
 
   def business
-    @business ||=
-      current_user.businesses.find_by(id: business_id) ||
-      current_user.businesses.build(name: business_name, information: business_information)
+    @business ||= find_or_build_business
+  end
+
+  def valid?
+    return false if super == false
+    return true if job_listing.valid?
+
+    job_listing.errors.each do |error|
+      errors.add(error.attribute, error.type)
+    end
+
+    false
   end
 
   private
@@ -33,10 +46,21 @@ class JobListingForm
     )
   end
 
-  def business_found!
-    return if business.present?
-    return if business_id.blank?
+  def find_or_build_business
+    if business_id.present?
+      current_user.businesses.find_by(id: business_id)
+    else
+      current_user.businesses.build(name: business_name, information: business_information)
+    end
+  end
 
-    errors.add(:business_id, "couldn't find business by id: #{business_id}")
+  def valid_business!
+    if business_id.present? && business.nil?
+      errors.add(:business_id, "couldn't find business by id: #{business_id}")
+    elsif business.invalid?
+      business.errors.each do |error|
+        errors.add("business_#{error.attribute}", error.type)
+      end
+    end
   end
 end

@@ -12,6 +12,9 @@ class JobListing < ApplicationRecord
   validates :description, :point_of_contact, presence: true
 
   scope :active, -> { where(deactivated_at: nil) }
+  scope :belonging_to, ->(user) { joins(:business).merge(Business.belonging_to(user)) }
+
+  delegate :user, to: :business
 
   def deactivate!(time: Time.current)
     update(deactivated_at: time)
