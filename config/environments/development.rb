@@ -27,7 +27,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -62,6 +62,7 @@ Rails.application.configure do
   config.assets.quiet = true
 
   config.hosts << "jobhunter.local:3000"
+  config.hosts << "jobhunter.local:3002"
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

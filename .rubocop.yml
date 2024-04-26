@@ -20,3 +20,13 @@ Style/HashSyntax:
 Layout/LineLength:
   Exclude:
     - "config/initializers/devise.rb"
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
