@@ -1,0 +1,10 @@
+if [ -z "$RAILS_ENV" ]
+then
+  QUERY_ENV="development"
+else
+  QUERY_ENV=$RAILS_ENV
+fi
+
+DB_NAME="job_hunter_$QUERY_ENV"
+
+less $1 | sqlite3 $DB_NAME

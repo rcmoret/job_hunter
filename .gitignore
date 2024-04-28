@@ -33,3 +33,4 @@
 # the sqlite database files
 /job_hunter_development
 /job_hunter_test
+/query.sql
