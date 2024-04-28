@@ -1,0 +1,24 @@
+<div style="border: 1px solid #888; margin-bottom: 1rem; padding: 0.5rem 0.8rem; border-radius: 1rem; background-color: #EFF3FC;">
+  <p>
+    <span style="font-size: 1.5rem; text-decoration: underline;">
+      <%= job_listing.business.name %>
+    </span>
+    - id: <%= job_listing.business.id %>
+  </p>
+  <p>
+    <span style="font-size: 1.2rem;">
+      &#8226; Position: <%= job_listing.description %>
+    </span>
+    - id: <%= job_listing.id %>
+  </p>
+  <p>Contact: <%= job_listing.point_of_contact %></p>
+  <% if job_listing.events.any? %>
+    <p style="font-size: 1.3rem;">
+      Timeline
+    </p>
+    <%= render events_component %>
+  <% end %>
+</div>
+<% children.each do |child| %>
+  <%= render child %>
+<% end %>

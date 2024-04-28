@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_10_163224) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_27_162220) do
   create_table "businesses", force: :cascade do |t|
     t.string "name", limit: 200, null: false
     t.string "information", limit: 1000
@@ -49,6 +49,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_10_163224) do
     t.index ["business_id"], name: "index_job_listings_on_business_id"
   end
 
+  create_table "user_configuration_options", force: :cascade do |t|
+    t.string "description", limit: 200, null: false
+    t.string "default_value", limit: 1000, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_configurations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "user_configuration_option_id", null: false
+    t.string "value", limit: 1000, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_configuration_option_id"], name: "index_user_configurations_on_user_configuration_option_id"
+    t.index ["user_id"], name: "index_user_configurations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -65,4 +82,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_10_163224) do
   add_foreign_key "job_listing_events", "job_listing_event_types"
   add_foreign_key "job_listing_events", "job_listings"
   add_foreign_key "job_listings", "businesses"
+  add_foreign_key "user_configurations", "user_configuration_options"
+  add_foreign_key "user_configurations", "users"
 end

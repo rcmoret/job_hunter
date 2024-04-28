@@ -8,4 +8,8 @@ class User < ApplicationRecord
 
   has_many :businesses
   has_many :job_listings, through: :businesses
+
+  def configuration(option)
+    UserConfigurationView.value_for(self, option)
+  end
 end

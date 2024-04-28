@@ -1,0 +1,23 @@
+<div style="padding-left: 2rem; padding-right: 2rem;">
+  <p>
+  <span style="font-size: 1.3rem;">
+    <%= event_type %>
+  </span>
+  <span style="font-size: 0.8rem;">
+    <%= event_time %>
+    (id: <%= id %>)
+  </span>
+  </p>
+  <div>
+    <%= info %>
+  </div>
+  <div>
+    <%= 
+      link_to "Edit",
+        edit_job_listing_event_path(event.job_listing, event)
+    %>
+  </div>
+  <% unless iteration_context.last? %>
+    <hr />
+  <% end %>
+</div>

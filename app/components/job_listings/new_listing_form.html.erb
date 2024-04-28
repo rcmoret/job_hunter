@@ -1,0 +1,41 @@
+<div style="width: 60%;">
+  <p>Job Listing Form</p>
+  <%= simple_form_for form_object, url: post_job_listing_path, data: { turbo: false } do |f| %>
+    <div style="width: 100%;">
+      <div style="width: 100%;">
+        <%= f.label "Select Existing Business" %>
+      </div>
+      <%= f.input_field :business_id, collection: businesses %>
+    </div>
+    <div style="width: 100%;">
+      <p>Add New Business</p>
+      <div style="width: 100%;">
+        <%= f.label "Business Name" %>
+      </div>
+      <%= f.input_field :business_name, html: { required: false } %>
+      <div style="width: 100%;">
+        <%= f.label "Business Info" %>
+      </div>
+      <%= f.input_field :business_information, as: :text %>
+    </div>
+    <p>Listing</p>
+    <div style="width: 100%;">
+      <%= f.label :description %>
+    </div>
+    <%= f.input_field :description %>
+    <div style="width: 100%;">
+      <%= f.label :point_of_contact %>
+    </div>
+    <%= f.input_field :point_of_contact %>
+    <div style="width: 100%;">
+      <%= f.label :url %> 
+    </div>
+    <div style="width: 100%;">
+      <%= f.input_field :url, size: 200 %>
+    </div>
+    <div style="width: 100%;">
+      <%= f.submit %>
+    </div>
+  </div>
+  <% end %>
+</div>
